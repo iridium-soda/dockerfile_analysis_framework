@@ -90,12 +90,12 @@ def check_number(number):
     elif len(num) == 1:
         return 1
 
-    try:
+    try:# Why here?
         imageNum = int(num[0]) * 1000 + int(num[1])
         if imageNum < 2500:
             return 1
-    except Exception as e:
-        return 0
+    except Exception as _:
+        return 0# if len(num)==0,return 0. Usually it will not happen
 
     return 0
 
