@@ -65,7 +65,7 @@ def traversal_paths_to_leaf():
             dictTree.remove_node(leaf.identifier)
             cut_accepted_leaves(leaves)
             with open(keywordsFile, 'a+') as keyword_list:
-                 keyword_list.write(keyWord + "\n")
+                 keyword_list.write(keyWord + "\n")# Adding to vaild words.
             #keywordList.append(keyWord)
         # no results
         elif status == -2:

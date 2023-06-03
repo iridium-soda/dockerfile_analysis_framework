@@ -29,7 +29,7 @@ def get_images_url(keyword, url):
 
     try:
         content = requests.get(url, headers = headers)
-        while content.status_code == 429:
+        while content.status_code == 429:# 429 means too many requests to get response
             print ("[WARN] wait for 429!")
             time.sleep(60)
             content = requests.get(url, headers=headers)
@@ -43,6 +43,7 @@ def get_images_url(keyword, url):
         return ""
 
 class resolve_images_thread(threading.Thread):
+    # Get metadata of images to self.images[image]
     def __init__(self, keyword):
         threading.Thread.__init__(self)
         self.keyword = keyword.strip()
@@ -116,7 +117,7 @@ def main():
         t.join()
         imgs = t.get_results()
         save_data(imgs)
-
+# Collect all data in ./results/all_images.list
 def save_data(images):
     with open("./results/all_images.list", "a+") as log:
         for img in images:

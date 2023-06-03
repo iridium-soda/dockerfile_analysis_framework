@@ -9,7 +9,7 @@ meaningless_words = [
 
 # paras "wordsList" is a string
 # paras "rule": and means all in, or means one in
-def exsit(text, wordsList, rule):
+def exsit(text, wordsList, rule)->bool:
     words = meaningless_words
 
     if rule == "or":

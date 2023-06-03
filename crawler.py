@@ -67,9 +67,8 @@ def resolve_tags(image):
         return tags
     content = content.json()
 
-    if "results" not in content:
-        return tags
-    elif len(content["results"]) == 0:
+    # if gets empty results
+    if "results" not in content or len(content["results"]) == 0:
         return tags
 
     # get image's tags

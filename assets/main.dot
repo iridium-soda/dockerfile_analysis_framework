@@ -1,0 +1,22 @@
+//Main graph, for directed graph only
+digraph name{
+    rankdir=TB;
+    main[label="main.py"] ;
+    read[label="Read ./images_list/$FILE"];
+    main->read;
+    read->start;
+
+    subgraph cluster_thread{
+        rankdir=LR;
+        label="threading.Thread";
+        start->run;
+        
+    }
+    run->write;
+    write[label="write ./results/words-$FILE.list"];
+    subgraph cluster_crawler{
+        label="crawler.py";
+        resolve_images_info;
+    }
+    run->resolve_images_info[label="Get dockerfile"];
+}

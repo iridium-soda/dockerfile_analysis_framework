@@ -1,6 +1,6 @@
 import os
 import sys
-import parser
+import pparser
 
 docPath = "./dataset/"
 

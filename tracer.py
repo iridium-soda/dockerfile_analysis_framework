@@ -1,4 +1,4 @@
-import parser
+import pparser
 
 basePath = "./results/"
 
@@ -25,7 +25,7 @@ def trace_entry_images(dockerfile):
     sources_scripts = {}
 
     # get the entrypoint 
-    entrypoint = parser.parse_exe_from_dockerfile(dockerfile)
+    entrypoint = pparser.parse_exe_from_dockerfile(dockerfile)
     if len(entrypoint) == 0:
         return sources_scripts
 
@@ -38,7 +38,7 @@ def trace_entry_images(dockerfile):
                 scripts.append(cmd)
 
     # trace the source of the scripts
-    commands = parser.parse_cmds_from_dockerfile(dockerfile)
+    commands = pparser.parse_cmds_from_dockerfile(dockerfile)
     for script in scripts:
         # from RUN commands
         for command in commands:
@@ -49,7 +49,7 @@ def trace_entry_images(dockerfile):
                     sources_scripts[script].append(command)
 
         # from COPY or ADD
-        copy = parser.parse_add_from_dockerfile(dockerfile)
+        copy = pparser.parse_add_from_dockerfile(dockerfile)
         for external in copy:
             if script in external:
                 if script not in sources_scripts:
@@ -72,10 +72,10 @@ def identify_keywords(dockerfile, keywords):
     results = {}
 
     # "RUN" commands
-    commands = parser.parse_cmds_from_dockerfile(dockerfile)
+    commands = pparser.parse_cmds_from_dockerfile(dockerfile)
 
     # "ENTRYPOINT" or "CMD"
-    entrypoints = parser.parse_exe_from_dockerfile(dockerfile)
+    entrypoints = pparser.parse_exe_from_dockerfile(dockerfile)
 
     # "keywords" is a list of keyword
     for keyword in keywords:
