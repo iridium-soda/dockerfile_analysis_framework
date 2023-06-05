@@ -2,6 +2,7 @@
 import sys
 import threading
 import crawler
+import os
 
 # using for debug
 failed_resolve = []
@@ -27,7 +28,7 @@ def main():
     index = 1
     total = len(images)
 
-    cores = 16
+    cores =  os.cpu_count() # To fit the current running meachines
     analyze_thread = []
 
     for image in images:
