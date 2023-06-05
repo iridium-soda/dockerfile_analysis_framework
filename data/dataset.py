@@ -12,7 +12,7 @@ def read_raw_dockerfile_data():
             dockerfile = line.split("; ", 1)[1].strip('b').strip("\'").replace("\\n", "\n")
             
             try:
-                words = parser.dockerfile2bash(dockerfile)
+                words = pparser.dockerfile2bash(dockerfile)
                 if len(words) != 0:
                     words_dict[image] = words
                 else:

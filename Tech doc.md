@@ -1,6 +1,6 @@
 # 需求分析
 
-## Roadmap
+## Targets
 
 - [ ] 尽可能多的爬取dockerhub上的镜像
 - [ ] 分析出metadata，分拣出尺寸比较大（大于10G、100G的镜像层）
@@ -16,7 +16,7 @@
 
 ### Data Creep
 
-需要获取镜像的下面信息：
+It is necessary to take care of the following places：
 
 Tags
 
@@ -30,11 +30,11 @@ Last updated
 
 ![OqD5dB.png](https://i.imgtg.com/2023/06/02/OqD5dB.png)
 
-Overview:这里可能特别长 需要做处理
+Overview: might to be too long; more processings needed.
 
 ![OqD5dB.png](https://i.imgtg.com/2023/06/02/OqDTOs.png)
 
-Build history:每一层的信息
+Build history
 
 1. Build Command
 2. Size
@@ -46,77 +46,43 @@ Build history:每一层的信息
 1. 爬取镜像名称和原数据
 2. 以镜像名为主键获取dockerfile相关信息
 
-### 生成检索词并获取镜像列表
+## Usages
 
-keyword生成在`images/keywords-list`。这里遍历字符集包含所有的可能的查询词，并分析响应中的结果数量。一般而言两个关键词拼接已经足够。
+### main.py
 
-`images/crawl_keyword_list.py`该文件生成查询词的字符树并进行审查。然后将获取到的信息存到`images/images.list`里
+- Description: Read images' names in `./images_list/$FILE` and get their dockerfile via dockerhub, github, and building history.
+- Input: path of images list in `images_list`
+- Output: Dockerfile are saved at `./results/words-$FILE.list`.
 
-1. 生成字符树
-2. 遍历字符树
-   1. 对每条路径：
-      1. 调用`check_keyword_search_results`。在该函数中向dockerhub发送查询请求，URL为`"https://hub.docker.com/search?q={}&type=image".format(keyWord)`。
-      2. 如果上一条返回0（正常退出），则调用`add_leaf_node`否则进入错误处理：
-         1. 如果返回-2，意思是没有查询结果
-         2. 如果返回0，意思是返回数量超过最大值1000000，则可继续添加查询词
-         3. 如果返回1，意思是数量小于1000,将关键词加入`./keyWordList.txt`
-         4. 对于小于1000000大于1000的结果数量如果小于2500返回1，其他情况返回0
+URLS:
+- `https://hub.docker.com/v2/repositories/<image_name>/dockerfile/`: Get dockerfile from dockerhub
+- `https://hub.docker.com/api/audit/v1/build/?include_related=true&offset=0&limit=50&object=%2Fapi%2Frepo%2Fv1%2Frepository%2F<username>%2F<image_name>%2F`: Get github repo from dockerhub(if has)
+- `https://raw.githubusercontent.com/<repo>/Dockerfile`: Get dockerfile from github repo
+- `https://hub.docker.com/v2/repositories/<image_name>/tags/`: Get all tags from dockerhub and extract them via `content["results"]["name"]`
+- `https://hub.docker.com/v2/repositories/<image_name>/tags/<tag_name>/images`: Get each layer's instruction to make up a dockerfile; exeract instructions from `contane[layer][instruction]`. Add `ENTRYPOINT` if necessary.
 
-### 获取镜像详细信息
+### images\search_dockerhub.py
 
-位置在`images/search_dockerhub.py`
+- Description: Get image name, create time and update time from images searching list like:`image + ", " + created + ", " + updated`.
+- Input: Path of keyword list.
+- Output: Save metadatas of images in `./results/all_images.list`.
 
-### 分析Dockerfile
 
-位置在`data/dataset.py`
+URLS:
+- `https://hub.docker.com/api/content/v1/products/search?page_size=100&q=<keyword>&type=image`
 
-## 文件结构
 
-### `main.py`
+### images\crawl_keyword_list.py
 
-读取`./images_list/$FILE`中提取到的镜像名，并多线程通过调用复写`threading. Thread`类的`run`方法，在`thread.srart`调用该方法获取对应的dockerfile写进`./results/words-$FILE.list`。
+- Input: None
+- Output: Avaliable keywords to `./keyWordList.txt`
+- Description: Generate keywords and send research request to dockerhub to find if it is accurate enough to crawl all results(<10000).
 
-![main.dot](assets\main.dot.svg)
+URLS:
+- `https://hub.docker.com/search?q=<keyword>&type=image`: return html.
 
-`crawler.py`按照从三个地方获取dockerfile，如果在之前的获得到则不执行后面的来源：
+### data/dataset.py
 
-- Dockerhub。URL为`https://hub.docker.com/v2/repositories/<image_name>/dockerfile/`。例子：`https://hub.docker.com/v2/repositories/aaadigital/gcloud-backup-manager/dockerfile/`。
-- Github。
-  - 先从`https://hub.docker.com/api/audit/v1/build/?include_related=true&offset=0&limit=50&object=%2Fapi%2Frepo%2Fv1%2Frepository%2F<username>%2F<image_name>%2F`解析github repo地址,如果返回json中有`source_repo`字段则有repo，返回。
-  - 如果有repo，则访问`https://raw.githubusercontent.com/<repo>/Dockerfile`。
-- build history。
-  - 获取tag列表。URL为`https://hub.docker.com/v2/repositories/<image_name>/tags/`,得到response中的`content["results"]["name"]`,例如：`"name": "latest",`
-  - 然后遍历tags，对于每个image, tagName对，进行解析：
-    - 访问`https://hub.docker.com/v2/repositories/<image_name>/tags/<tag_name>/images`获取response
-    - 获取**每个**`layers`字段。对于每个layer获取其`instruction`字段。如果没有`ENTRYPOINT`则添加一个。
-
-这里Dockerhub和buildhistroy的内容不一致？拿不到size信息
-
-Dockerhub:
-
-```json
-{
-    "contents": "FROM google/cloud-sdk:alpine\nRUN apk --no-cache add mysql-client gzip rsync tar\nCOPY /scripts/*.sh /scripts/\n"
-}
-```
-
-buildhistory:
-
-```json
- "layers": [
-
-            {
-                "size": 0,
-                "instruction": " CMD [\"/bin/sh\"]"
-            },
-            {
-                "size": 0,
-                "instruction": " ARG CLOUD_SDK_VERSION=285.0.1"
-            }
-//...
-]
-```
-
-### `images\search_dockerhub.py`
-
-### `images\crawl_keyword_list.py`
+- Description: Read and parse dockerfile, pick out the dockerfile that deserves attention.
+- Input: filename in `/dataset/`.
+- Output: Write `image + "-marked; " + str(words_dict[image])` to `/dataset/filename-words.list`

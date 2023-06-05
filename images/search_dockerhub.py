@@ -2,6 +2,7 @@ import sys
 import time
 import threading
 import requests
+import os
 
 def get_images_url(keyword, url):
     if url == "":
@@ -77,7 +78,7 @@ class resolve_images_thread(threading.Thread):
         return self.images
 
 def main():
-    cores = 16
+    cores =  os.cpu_count() # To fit the current running meachines
     keywords = {}
     with open(sys.argv[1], "r") as log:
         for line in log.readlines():
@@ -109,7 +110,8 @@ def main():
 
             thread.start()
             crawl_thread.append(thread)
-
+    
+    # Saves the rest of data after all the keywords are called
     for t in crawl_thread:
         if not t.isAlive():
             continue
