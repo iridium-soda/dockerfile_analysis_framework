@@ -1,2 +1,4 @@
 proxy/keys.json
 driver/geckodriver.exe
+# venv
+dockerfile_analysis

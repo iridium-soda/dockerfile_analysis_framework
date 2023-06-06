@@ -11,7 +11,7 @@ from selenium.webdriver.firefox.service import Service
 options = Options()
 options.add_argument('-headless')
 #options.headless = True
-s = Service(r"D:\\Dev\\dockerfile_analysis_framework\\driver\\geckodriver\.exe")# todo:change it before running
+s = Service(r"D:\\Dev\\dockerfile_analysis_framework\\driver\\geckodriver.exe")# todo:change it before running
 browser = webdriver.Firefox(service=s, options=options)
 keywordsFile = "./keyWordList.txt"
 
@@ -124,7 +124,7 @@ def check_keyword_search_results(keyWord):
             continue
             pass
 
-    element = Wait(browser, 10).until(
+    element = Wait(browser, 50).until(
         Expect.presence_of_element_located((By.ID, "searchResults"))
     )
 

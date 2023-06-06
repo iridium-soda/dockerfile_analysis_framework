@@ -51,10 +51,11 @@ Build history
 ### main.py
 
 - Description: Read images' names in `./images_list/$FILE` and get their dockerfile via dockerhub, github, and building history.
-- Input: path of images list in `images_list`
+- Input: the path of images list in `images_list`
 - Output: Dockerfile are saved at `./results/words-$FILE.list`.
 
 URLS:
+
 - `https://hub.docker.com/v2/repositories/<image_name>/dockerfile/`: Get dockerfile from dockerhub
 - `https://hub.docker.com/api/audit/v1/build/?include_related=true&offset=0&limit=50&object=%2Fapi%2Frepo%2Fv1%2Frepository%2F<username>%2F<image_name>%2F`: Get github repo from dockerhub(if has)
 - `https://raw.githubusercontent.com/<repo>/Dockerfile`: Get dockerfile from github repo
@@ -63,29 +64,30 @@ URLS:
 
 ### images\search_dockerhub.py
 
-- Description: Get image name, create time and update time from images searching list like:`image + ", " + created + ", " + updated`.
-- Input: Path of keyword list.
-- Output: Save metadatas of images in `./results/all_images.list`.
-
+- Description: Get the image name, create time and update time from the images searching list like `image +` ", " + created + ", " + updated`.
+- Input: Path of the keyword list.
+- Output: Save metadata of images in `./results/all_images.list`.
 
 URLS:
-- `https://hub.docker.com/api/content/v1/products/search?page_size=100&q=<keyword>&type=image`
 
+- `https://hub.docker.com/api/content/v1/products/search?page_size=100&q=<keyword>&type=image`
 
 ### images\crawl_keyword_list.py
 
 - Input: None
-- Output: Avaliable keywords to `./keyWordList.txt`
-- Description: Generate keywords and send research request to dockerhub to find if it is accurate enough to crawl all results(<10000).
+- Output: Available keywords to `./keyWordList.txt`
+- Description: Generate keywords and send research requests to the docker hub to find if it is accurate enough to crawl all results(<10000).
 
 URLS:
+
 - `https://hub.docker.com/search?q=<keyword>&type=image`: return html.
 
 Note:
 
 Put Firefox binary path to `browser = webdriver.Firefox(options=options,firefox_binary="")` before starting
+
 ### data/dataset.py
 
-- Description: Read and parse dockerfile, pick out the dockerfile that deserves attention.
+- Description: Read and parse docker file, and pick out the docker file that deserves attention.
 - Input: filename in `/dataset/`.
 - Output: Write `image + "-marked; " + str(words_dict[image])` to `/dataset/filename-words.list`
