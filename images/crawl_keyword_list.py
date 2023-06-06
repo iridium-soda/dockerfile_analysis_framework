@@ -5,12 +5,14 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 from selenium.webdriver.support import expected_conditions as Expect
+from selenium.webdriver.firefox.service import Service
 #from selenium.webdriver.common.proxy import Proxy, ProxyType
 
 options = Options()
 options.add_argument('-headless')
 #options.headless = True
-browser = webdriver.Firefox(options=options,firefox_binary="")# TODO:这里要改
+s = Service(r"D:\\Dev\\dockerfile_analysis_framework\\driver\\geckodriver\.exe")# todo:change it before running
+browser = webdriver.Firefox(service=s, options=options)
 keywordsFile = "./keyWordList.txt"
 
 wordDict = [
@@ -25,6 +27,7 @@ dictTree.add_node(root)
 parents = []
 
 def init_tree():
+    print("Initing trees")
     for firstWord in wordDict:
         node1layer = Node(data=firstWord)
         dictTree.add_node(node1layer, parent = root)
