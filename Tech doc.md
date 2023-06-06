@@ -81,6 +81,9 @@ URLS:
 URLS:
 - `https://hub.docker.com/search?q=<keyword>&type=image`: return html.
 
+Note:
+
+Put Firefox binary path to `browser = webdriver.Firefox(options=options,firefox_binary="")` before starting
 ### data/dataset.py
 
 - Description: Read and parse dockerfile, pick out the dockerfile that deserves attention.

@@ -5,10 +5,12 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 from selenium.webdriver.support import expected_conditions as Expect
+#from selenium.webdriver.common.proxy import Proxy, ProxyType
 
 options = Options()
-options.headless = True
-browser = webdriver.Firefox(options=options)
+options.add_argument('-headless')
+#options.headless = True
+browser = webdriver.Firefox(options=options,firefox_binary="")# TODO:这里要改
 keywordsFile = "./keyWordList.txt"
 
 wordDict = [
@@ -60,6 +62,8 @@ def traversal_paths_to_leaf():
 
         leaf = dictTree[path[-1]]
         # Judging whether this keyword can be used to search in docker hub
+        #options.add_argument('--proxy-server=http://ip:port')# TODO:这里需要获取代理
+        # Note: Refer https://blog.csdn.net/woaixuexi6666/article/details/126394558
         status = check_keyword_search_results(keyWord)
         if status == 1:
             dictTree.remove_node(leaf.identifier)
@@ -109,6 +113,7 @@ def check_keyword_search_results(keyWord):
     url = "https://hub.docker.com/search?q={}&type=image".format(keyWord)
     for i in range(5):
         try:
+            
             browser.get(url)
             break
         except Exception as e:
