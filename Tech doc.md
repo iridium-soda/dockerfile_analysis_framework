@@ -78,13 +78,16 @@ URLS:
 - Output: Available keywords to `./keyWordList.txt`
 - Description: Generate keywords and send research requests to the docker hub to find if it is accurate enough to crawl all results(<10000).
 
+
 URLS:
 
 - `https://hub.docker.com/search?q=<keyword>&type=image`: return html.
 
 Note:
 
-Put Firefox binary path to `browser = webdriver.Firefox(options=options,firefox_binary="")` before starting
+~~Put Firefox binary path to `browser = webdriver.Firefox(options=options,firefox_binary="")` before starting~~
+
+**To do crwaling Parallelly, we divide the trees to 6 parts(maybe changed later), use command args to decide.**
 
 ### data/dataset.py
 

@@ -6,19 +6,60 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 from selenium.webdriver.support import expected_conditions as Expect
 from selenium.webdriver.firefox.service import Service
-#from selenium.webdriver.common.proxy import Proxy, ProxyType
+
+# from selenium.webdriver.common.proxy import Proxy, ProxyType
+import sys
 
 options = Options()
-options.add_argument('-headless')
-#options.headless = True
-s = Service(r"D:\\Dev\\dockerfile_analysis_framework\\driver\\geckodriver.exe")# todo:change it before running
+options.add_argument("-headless")
+# options.headless = True
+s = Service(
+    r"D:\\Dev\\dockerfile_analysis_framework\\driver\\geckodriver.exe"
+)  # todo:change it before running
 browser = webdriver.Firefox(service=s, options=options)
 keywordsFile = "./keyWordList.txt"
 
+divison = -1  # Decide which Trees will be selected and built
+
 wordDict = [
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '_'
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "-",
+    "_",
 ]
 
 dictTree = Tree()
@@ -26,25 +67,32 @@ root = Node(data="")
 dictTree.add_node(root)
 parents = []
 
+
 def init_tree():
     print("Initing trees")
-    for firstWord in wordDict:
+    lb,ub = divison*6-6,divison*6
+    if ub==6:
+        ub=len(wordDict)
+
+    for firstWord in wordDict[ib:ub]:
         node1layer = Node(data=firstWord)
-        dictTree.add_node(node1layer, parent = root)
+        dictTree.add_node(node1layer, parent=root)
         parents.append(node1layer)
 
         for secWord in wordDict:
             node2layer = Node(data=secWord)
-            dictTree.add_node(node2layer, parent = node1layer)
+            dictTree.add_node(node2layer, parent=node1layer)
+
 
 def add_leaf_node(root):
     for word in wordDict:
         node = Node(data=word)
-        dictTree.add_node(node, parent = root)
+        dictTree.add_node(node, parent=root)
+
 
 def cut_accepted_leaves(leaves):
     global parents
-    
+
     flag = 1
     for node in dictTree.leaves():
         if node not in leaves or node in parents:
@@ -53,6 +101,7 @@ def cut_accepted_leaves(leaves):
 
     if flag == 0:
         cut_accepted_leaves(leaves)
+
 
 def traversal_paths_to_leaf():
     # flag is used to judge whether end recursive
@@ -65,15 +114,15 @@ def traversal_paths_to_leaf():
 
         leaf = dictTree[path[-1]]
         # Judging whether this keyword can be used to search in docker hub
-        #options.add_argument('--proxy-server=http://ip:port')# TODO:这里需要获取代理
+        # options.add_argument('--proxy-server=http://ip:port')# TODO:这里需要获取代理
         # Note: Refer https://blog.csdn.net/woaixuexi6666/article/details/126394558
         status = check_keyword_search_results(keyWord)
         if status == 1:
             dictTree.remove_node(leaf.identifier)
             cut_accepted_leaves(leaves)
-            with open(keywordsFile, 'a+') as keyword_list:
-                 keyword_list.write(keyWord + "\n")# Adding to vaild words.
-            #keywordList.append(keyWord)
+            with open(keywordsFile, "a+") as keyword_list:
+                keyword_list.write(keyWord + "\n")  # Adding to vaild words.
+            # keywordList.append(keyWord)
         # no results
         elif status == -2:
             dictTree.remove_node(leaf.identifier)
@@ -88,8 +137,9 @@ def traversal_paths_to_leaf():
     if flag == 0:
         traversal_paths_to_leaf()
 
+
 def check_number(number):
-    num = str(number).split(',')
+    num = str(number).split(",")
     # num over 1,000,000
     if len(num) > 2:
         return 0
@@ -97,30 +147,30 @@ def check_number(number):
     elif len(num) == 1:
         return 1
 
-    try:# Why here?
+    try:  # Why here?
         imageNum = int(num[0]) * 1000 + int(num[1])
         if imageNum < 2500:
             return 1
     except Exception as _:
-        return 0# if len(num)==0,return 0. Usually it will not happen
+        return 0  # if len(num)==0,return 0. Usually it will not happen
 
     return 0
+
 
 def check_keyword_search_results(keyWord):
     # root node is ""
     if keyWord == "":
         return -1
 
-    print ("Check the Keywords:", keyWord)
+    print("Check the Keywords:", keyWord)
 
     url = "https://hub.docker.com/search?q={}&type=image".format(keyWord)
     for i in range(5):
         try:
-            
             browser.get(url)
             break
         except Exception as e:
-            print ("retry...")
+            print("retry...")
             continue
             pass
 
@@ -128,13 +178,13 @@ def check_keyword_search_results(keyWord):
         Expect.presence_of_element_located((By.ID, "searchResults"))
     )
 
-    if 'no results' in element.text:
-        print ("There doesn't have search results...")
-        #return 0
+    if "no results" in element.text:
+        print("There doesn't have search results...")
+        # return 0
         return -2
 
-    soup = BeautifulSoup(browser.page_source,'html.parser')
-    links = soup.find_all('div',class_="styles__currentSearch___35kW_")
+    soup = BeautifulSoup(browser.page_source, "html.parser")
+    links = soup.find_all("div", class_="styles__currentSearch___35kW_")
     for link in links:
         if "-" in link.div.text and "of" in link.div.text:
             num = link.div.text.split()[4]
@@ -142,10 +192,16 @@ def check_keyword_search_results(keyWord):
             return imageNum
     return 0
 
+
 def main():
     init_tree()
     traversal_paths_to_leaf()
     browser.quit()
 
-if __name__ == '__main__':
-    main()
+
+if __name__ == "__main__":
+    divison = int(argv[1])  # should be 1 2 3 4 5 6
+    if divison in [1, 2, 3, 4, 5, 6]:
+        main()
+    else:
+        print("Wrong args!")

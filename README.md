@@ -46,7 +46,7 @@ s = Service(r"PATH/to/geckodriver.exe")# NOTE:change it before running
 #### Run
 
 ```shell
-python ./images/crawl_keyword_list.py
+python ./images/crawl_keyword_list.py (1/2/3/4/5/6)
 ```
 
 ### Search images by keywords in dockerhub
