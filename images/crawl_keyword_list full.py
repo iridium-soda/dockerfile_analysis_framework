@@ -1,3 +1,8 @@
+"""
+Full version of crawing words in single thread
+"""
+
+
 from treelib import Tree, Node
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -71,12 +76,9 @@ parents = []
 
 def init_tree():
     print("Initing trees")
-    if divison==1:
-        lb,ub=0,19
-    elif divison==2:
-        lb,ub=19,38
 
-    for firstWord in wordDict[lb:ub]:
+
+    for firstWord in wordDict:
         node1layer = Node(data=firstWord)
         dictTree.add_node(node1layer, parent=root)
         parents.append(node1layer)
@@ -202,8 +204,5 @@ def main():
 
 
 if __name__ == "__main__":
-    divison = int(sys.argv[1])  # should be 1 2
-    if divison in [1, 2]:
-        main()
-    else:
-        print("Wrong args!")
+   main()
+

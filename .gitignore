@@ -4,3 +4,4 @@ driver/geckodriver.exe
 dockerfile_analysis
 *.log
 geckodriver.log
+geckodriver.log
