@@ -20,7 +20,6 @@ browser = webdriver.Firefox(service=s, options=options)
 
 divison = -1  # Decide which Trees will be selected and built
 timeout_sec = 300
-keywordsFile = "./keyWordList"+str(divison)+".txt"
 
 wordDict = [
     "a",
@@ -63,6 +62,7 @@ wordDict = [
     "_",
 ]
 
+keywordsFile = "./keyWordList"+wordDict[divison]+".txt"
 dictTree = Tree()
 root = Node(data="")
 dictTree.add_node(root)
@@ -71,11 +71,9 @@ parents = []
 
 def init_tree():
     print("Initing trees")
-    lb,ub=divison*19-19,divison *19
-    if divison==2:
-        ub=38
+    
 
-    for firstWord in wordDict[lb:ub]:
+    for firstWord in wordDict[divison]:# For each char
         node1layer = Node(data=firstWord)
         dictTree.add_node(node1layer, parent=root)
         parents.append(node1layer)
@@ -201,8 +199,8 @@ def main():
 
 
 if __name__ == "__main__":
-    divison = int(sys.argv[1])  # should be 1 2
-    if divison in [1, 2]:
+    divison = int(sys.argv[1])  # should be 0~37
+    if divison >=0 and divison<38:
         main()
     else:
         print("Wrong args!")
