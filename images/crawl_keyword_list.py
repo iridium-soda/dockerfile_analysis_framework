@@ -14,13 +14,13 @@ options = Options()
 options.add_argument("-headless")
 # options.headless = True
 s = Service(
-    r"D:\\Dev\\dockerfile_analysis_framework\\driver\\geckodriver.exe"
+    r"driver\\geckodriver.exe"
 )  # todo:change it before running
 browser = webdriver.Firefox(service=s, options=options)
-keywordsFile = "./keyWordList.txt"
 
 divison = -1  # Decide which Trees will be selected and built
 timeout_sec = 300
+keywordsFile = "./keyWordList"+str(divison)+".txt"
 
 wordDict = [
     "a",
@@ -71,10 +71,9 @@ parents = []
 
 def init_tree():
     print("Initing trees")
-    if divison==1:
-        lb,ub=0,19
-    elif divison==2:
-        lb,ub=19,38
+    lb,ub=divison*19-19,divison *19
+    if divison==2:
+        ub=38
 
     for firstWord in wordDict[lb:ub]:
         node1layer = Node(data=firstWord)
@@ -174,7 +173,7 @@ def check_keyword_search_results(keyWord):
         except Exception as e:
             print("retry...")
             continue
-            pass
+
 
     element = Wait(browser, timeout_sec).until(
         Expect.presence_of_element_located((By.ID, "searchResults"))

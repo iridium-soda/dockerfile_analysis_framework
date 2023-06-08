@@ -1,0 +1,18 @@
+digraph cc{
+    a->b;
+     a->c;
+     c->d;
+     b->d[style="dashed"];
+    subgraph cluster_in{
+    label="境内网络环境";
+     a[label="开发机"];
+     b[label="境内代理池"];
+     
+    }
+    
+     subgraph cluster_out{
+        label="境外网络环境";
+        c[label="境外代理池"];
+        d[label="Dockerhub"];
+     }
+}

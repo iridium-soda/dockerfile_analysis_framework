@@ -49,7 +49,14 @@ s = Service(r"PATH/to/geckodriver.exe")# NOTE:change it before running
 python ./images/crawl_keyword_list.py (1/2/3/4)
 ```
 
+How many processes are running at the same time? Refer the source code.
+
 ### Search images by keywords in dockerhub
 
 - Configure proxy pool
 
+```shell
+python images\\search_dockerhub.py images\\keywords-list\\keyWordList_--.txt 
+```
+
+- `isAlive`应该改为`t.is_alive()`

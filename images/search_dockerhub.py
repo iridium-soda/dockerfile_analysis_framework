@@ -3,6 +3,7 @@ import time
 import threading
 import requests
 import os
+import get_proxy
 
 def get_images_url(keyword, url):
     if url == "":
@@ -29,11 +30,21 @@ def get_images_url(keyword, url):
     # response = requests.request("GET", url, headers=headers, data=payload)
 
     try:
-        content = requests.get(url, headers = headers)
+        #proxy=get_proxy.get_proxy()
+        proxy=""
+        if proxy:
+            content = requests.get(url, headers = headers,proxies=proxy)
+        else:# proxy is down
+            content = requests.get(url, headers = headers)
         while content.status_code == 429:# 429 means too many requests to get response
             print ("[WARN] wait for 429!")
             time.sleep(60)
-            content = requests.get(url, headers=headers)
+            proxy=""
+            #proxy=get_proxy.get_proxy()
+            if proxy:
+                content = requests.get(url, headers = headers,proxies=proxy)
+            else:# proxy is down
+                content = requests.get(url, headers = headers)
 
         if content.status_code == 200:
             return content
@@ -100,7 +111,7 @@ def main():
             crawl_thread.append(thread)
         else:
             for t in crawl_thread:
-                if not t.isAlive():
+                if not t.is_alive():
                     continue
                 
                 t.join()
@@ -113,7 +124,7 @@ def main():
     
     # Saves the rest of data after all the keywords are called
     for t in crawl_thread:
-        if not t.isAlive():
+        if not t.is_alive():
             continue
         
         t.join()
