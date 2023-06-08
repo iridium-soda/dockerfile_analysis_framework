@@ -94,3 +94,9 @@ Note:
 - Description: Read and parse docker file, and pick out the docker file that deserves attention.
 - Input: filename in `/dataset/`.
 - Output: Write `image + "-marked; " + str(words_dict[image])` to `/dataset/filename-words.list`
+
+## TroubleShoots
+
+`images\crawl_keyword_list.py`在无图形界面的ubuntu上运行时卡住了。（或者报Failed to read marionette port）这是个比较麻烦的问题，检查之后发现可能是firefox的问题。见<https://stackoverflow.com/questions/72374955/failed-to-read-marionette-port-when-running-selenium-geckodriver-firefox-a>
+
+参考这个回答：<https://stackoverflow.com/a/76395058>

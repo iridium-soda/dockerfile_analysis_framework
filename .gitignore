@@ -3,6 +3,5 @@ driver/geckodriver.exe
 # venv
 dockerfile_analysis
 *.log
-geckodriver.log
-geckodriver.log
+images/geckodriver.log
 images/__pycache__/get_proxy.cpython-310.pyc
