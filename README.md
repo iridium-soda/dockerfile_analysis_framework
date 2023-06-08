@@ -17,6 +17,7 @@ Others may need install:
 ### Preparation
 
 ```bash
+sudo apt install python3.10-venv
 python -m venv dockerfile_analysis
 dockerfile_analysis\Scripts\activate.bat #for Windows bash
 dockerfile_analysis\Scripts\Activate.ps1 #In Powershell

@@ -21,7 +21,7 @@ Prepare a python venv:
 ```shell
 python -m venv dockerfile_analysis
 dockerfile_analysis\Scripts\activate.bat # for Windows cmd
-source ./dockerfile_analysis/Scripts/activate  # for ubuntu
+source ./dockerfile_analysis/bin/activate  # for ubuntu
 ```
 
 Install dependencies:
@@ -43,9 +43,10 @@ Prepare drivers:
     3. Move the binary to `/usr/local/bin/`:`sudo mv geckodriver /usr/local/bin/`
     4. Grant executable privileges to `geckodriver`:`sudo chmod +x /usr/local/bin/geckodriver`
     5. Install Firefox carefully, refer this answer in [StackOverflow](https://stackoverflow.com/a/76395058):
-       1. `sudo snap remove firefox`
-       2. `sudo add-apt-repository ppa:mozillateam/ppa`
-       3. **copy and paste it whole, not line by line**:
+       1. `sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic xvfb dbus-x11 x11-apps imagemagick`
+       2. `sudo snap remove firefox`
+       3. `sudo add-apt-repository ppa:mozillateam/ppa`
+       4. **copy and paste it whole, not line by line**:
 
         ```shell
         echo '
@@ -55,8 +56,8 @@ Prepare drivers:
         ' | sudo tee /etc/apt/preferences.d/mozilla-firefox
         ```
 
-        4. `echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox`
-        5. `sudo apt install firefox`
+        5. `echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox`
+        6. `sudo apt install firefox`
 
 ## Run
 
@@ -82,5 +83,9 @@ sudo npm install pm2 -g
 Run:
 
 ```shell
-pm2 start --interpreter path_to_venv/bin/python images/crawl_keyword_list.py (0~37) --name crawl_keyword_list  --no-autorestart
+pm2 start --interpreter dockerfile_analysis/bin/python3 images/crawl_keyword_list.py -- 0 --name crawl_keyword_list  --no-autorestart
 ```
+
+TroubleShoots:
+
+If the program stuck, uninstall and reinstall Firefox follow steps above. Or just praying and retrying...
