@@ -13,10 +13,8 @@ import sys
 options = Options()
 options.add_argument("-headless")
 # options.headless = True
-s = Service(
-    r"driver\\geckodriver.exe"
-)  # todo:change it before running
-browser = webdriver.Firefox(service=s, options=options)
+#s = Service(r"driver\\geckodriver.exe") 
+browser = webdriver.Firefox(options=options)
 
 divison = -1  # Decide which Trees will be selected and built
 timeout_sec = 300

@@ -1,5 +1,6 @@
 async-generator==1.10
 attrs==23.1.0
+bashlex==0.18
 beautifulsoup4==4.12.2
 bs4==0.0.1
 certifi==2023.5.7

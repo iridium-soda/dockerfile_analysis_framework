@@ -78,7 +78,6 @@ URLS:
 - Output: Available keywords to `./keyWordList.txt`
 - Description: Generate keywords and send research requests to the docker hub to find if it is accurate enough to crawl all results(<10000).
 
-
 URLS:
 
 - `https://hub.docker.com/search?q=<keyword>&type=image`: return html.
