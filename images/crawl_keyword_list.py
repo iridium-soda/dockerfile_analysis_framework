@@ -60,7 +60,7 @@ wordDict = [
     "_",
 ]
 
-keywordsFile = "./keyWordList"+wordDict[divison]+".txt"
+keywordsFile = ""
 dictTree = Tree()
 root = Node(data="")
 dictTree.add_node(root)
@@ -194,7 +194,7 @@ def check_keyword_search_results(keyWord):
     soup = BeautifulSoup(browser.page_source, "html.parser")
 
     links = soup.find_all("div", class_="MuiBox-root css-r29exk")
-    print(f"We got {links}")
+    #print(f"We got {links}")
     # FIXME: 这里什么都没抓到
     for link in links:
         
@@ -215,6 +215,7 @@ def main():
 if __name__ == "__main__":
     divison = int(sys.argv[1])  # should be 0~37
     if divison >=0 and divison<38:
+        keywordsFile="./keyWordList"+wordDict[divison]+".txt"
         main()
     else:
         print("Wrong args!")
