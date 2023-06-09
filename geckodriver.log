@@ -569,3 +569,18 @@ WebDriver BiDi listening on ws://127.0.0.1:61276
 [ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
 console.error: ({})
 DevTools listening on ws://127.0.0.1:61276/devtools/browser/2d929161-a21e-44c6-98c7-8cf779fef8ee
+1686330831776	geckodriver	INFO	Listening on 127.0.0.1:62872
+1686330834818	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "62873" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofileY9P3md"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686330835028	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686330835031	Marionette	INFO	Listening on port 62886
+Read port: 62886
+WebDriver BiDi listening on ws://127.0.0.1:62873
+1686330835091	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:62873/devtools/browser/e562d315-a3a4-4326-aed4-79330b0df45b

@@ -172,32 +172,35 @@ def check_keyword_search_results(keyWord):
             continue
 
     #bef=browser.page_source
+    while 1:
+        try:
+            element = Wait(browser, timeout_sec).until(
+            Expect.presence_of_element_located((By.CLASS_NAME, "MuiTypography-root MuiTypography-h3 css-lhhh1d"))
+            )
+
+            if "No results" in element.text:
+                print("There doesn't have search results...")
+                # return 0
+                return -2
+        except Exception as e:
+            pass
+
+
+        # NOTE: thisstep will fix browser.page_source,so donot comment it.
+        #aft=browser.page_source
+        #print(f"The browser.page_source changed?{aft==bef}")
+
+        #print(f"wegot {browser.page_source}")
+        soup = BeautifulSoup(browser.page_source, "html.parser")
+
+        links = soup.find_all("div", class_="MuiBox-root css-r29exk")
+        #print(f"We got {links}")
+        # FIXME: 这里什么都没抓到
+        if not links:
+            print("fatal:no links located. Retry")
+        else:
+            break
     
-    try:
-        element = Wait(browser, timeout_sec).until(
-        Expect.presence_of_element_located((By.CLASS_NAME, "MuiTypography-root MuiTypography-h3 css-lhhh1d"))
-        )
-
-        if "No results" in element.text:
-            print("There doesn't have search results...")
-            # return 0
-            return -2
-    except Exception as e:
-        pass
-
-
-    # NOTE: thisstep will fix browser.page_source,so donot comment it.
-    #aft=browser.page_source
-    #print(f"The browser.page_source changed?{aft==bef}")
-
-    #print(f"wegot {browser.page_source}")
-    soup = BeautifulSoup(browser.page_source, "html.parser")
-
-    links = soup.find_all("div", class_="MuiBox-root css-r29exk")
-    #print(f"We got {links}")
-    # FIXME: 这里什么都没抓到
-    if not links:
-        print("fatal:no links located")
     for link in links:
         print(f"Raw text is:{link.div.text}")
         if "-" in link.div.text and "of" in link.div.text:
