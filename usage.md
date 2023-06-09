@@ -71,19 +71,10 @@ Generate keywords and test their availability, valid keywords(getting less than 
 python images/crawl_keyword_list.py (0~37) # To determine the initial character of keywords, from a to -
 ```
 
-To run with `pm2`:
-
-Install:
+To run background:
 
 ```shell
-sudo apt install nodejs npm
-sudo npm install pm2 -g
-```
-
-Run:
-
-```shell
-pm2 start --interpreter dockerfile_analysis/bin/python3 images/crawl_keyword_list.py -- 0 --name crawl_keyword_list  --no-autorestart
+nohup python3 -u images/crawl_keyword_list.py 0 >> output-a.log 2>&1 &
 ```
 
 TroubleShoots:
