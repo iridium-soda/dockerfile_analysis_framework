@@ -17,7 +17,7 @@ options.add_argument("-headless")
 browser = webdriver.Firefox(options=options)
 
 divison = -1  # Decide which Trees will be selected and built
-timeout_sec = 2
+timeout_sec = 10
 
 wordDict = [
     "a",
@@ -196,8 +196,10 @@ def check_keyword_search_results(keyWord):
     links = soup.find_all("div", class_="MuiBox-root css-r29exk")
     #print(f"We got {links}")
     # FIXME: 这里什么都没抓到
+    if not links:
+        print("fatal:no links located")
     for link in links:
-        
+        print(f"Raw text is:{link.div.text}")
         if "-" in link.div.text and "of" in link.div.text:
             num = link.div.text.split()[4]
             imageNum = check_number(num)
@@ -215,7 +217,7 @@ def main():
 if __name__ == "__main__":
     divison = int(sys.argv[1])  # should be 0~37
     if divison >=0 and divison<38:
-        keywordsFile="./keyWordList"+wordDict[divison]+".txt"
+        keywordsFile="./keywords/keyWordList-"+wordDict[divison]+".txt"
         main()
     else:
         print("Wrong args!")
