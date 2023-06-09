@@ -17,7 +17,7 @@ options.add_argument("-headless")
 browser = webdriver.Firefox(options=options)
 
 divison = -1  # Decide which Trees will be selected and built
-timeout_sec = 300
+timeout_sec = 5
 
 wordDict = [
     "a",
@@ -171,23 +171,36 @@ def check_keyword_search_results(keyWord):
             print("retry...")
             continue
 
-
-    element = Wait(browser, timeout_sec).until(
-        Expect.presence_of_element_located((By.ID, "searchResults"))
+    """
+    try:
+        element = Wait(browser, timeout_sec).until(
+        Expect.presence_of_element_located((By.CLASS_NAME, "MuiTypography-root MuiTypography-h3 css-lhhh1d"))
     )
 
-    if "no results" in element.text:
-        print("There doesn't have search results...")
-        # return 0
-        return -2
-
+        if "no results" in element.text:
+            print("There doesn't have search results...")
+            # return 0
+            return -2
+    except Exception as e:
+        pass
+    """
+    #print(f"wegot {browser.page_source}")
     soup = BeautifulSoup(browser.page_source, "html.parser")
-    links = soup.find_all("div", class_="styles__currentSearch___35kW_")
+
+    elements = soup.find("h3",class_="MuiTypography-root MuiTypography-h3 css-lhhh1d")
+    if elements:
+        print("There doesn't have search results...")
+        return -2
+    print(f"We got {elements}")
+    links = soup.find_all("div", class_="MuiBox-root css-r29exk")
+    print(f"We got {links}")
+    # FIXME: 这里什么都没抓到
     for link in links:
+        
         if "-" in link.div.text and "of" in link.div.text:
             num = link.div.text.split()[4]
             imageNum = check_number(num)
-            print("{}: got {}, means {}",keyWord,num,imageNum)
+            print(f"{keyWord}: got {num}, means {imageNum}")
             return imageNum
     return 0
 
