@@ -17,7 +17,7 @@ options.add_argument("-headless")
 browser = webdriver.Firefox(options=options)
 
 divison = -1  # Decide which Trees will be selected and built
-timeout_sec = 5
+timeout_sec = 2
 
 wordDict = [
     "a",
@@ -163,7 +163,7 @@ def check_keyword_search_results(keyWord):
     print("Check the Keywords:", keyWord)
 
     url = "https://hub.docker.com/search?q={}&type=image".format(keyWord)
-    for i in range(5):
+    for _ in range(5):
         try:
             browser.get(url)
             break
@@ -171,27 +171,28 @@ def check_keyword_search_results(keyWord):
             print("retry...")
             continue
 
-    """
+    #bef=browser.page_source
+    
     try:
         element = Wait(browser, timeout_sec).until(
         Expect.presence_of_element_located((By.CLASS_NAME, "MuiTypography-root MuiTypography-h3 css-lhhh1d"))
-    )
+        )
 
-        if "no results" in element.text:
+        if "No results" in element.text:
             print("There doesn't have search results...")
             # return 0
             return -2
     except Exception as e:
         pass
-    """
+
+
+    # NOTE: thisstep will fix browser.page_source,so donot comment it.
+    #aft=browser.page_source
+    #print(f"The browser.page_source changed?{aft==bef}")
+
     #print(f"wegot {browser.page_source}")
     soup = BeautifulSoup(browser.page_source, "html.parser")
 
-    elements = soup.find("h3",class_="MuiTypography-root MuiTypography-h3 css-lhhh1d")
-    if elements:
-        print("There doesn't have search results...")
-        return -2
-    print(f"We got {elements}")
     links = soup.find_all("div", class_="MuiBox-root css-r29exk")
     print(f"We got {links}")
     # FIXME: 这里什么都没抓到

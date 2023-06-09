@@ -227,3 +227,157 @@ WebDriver BiDi listening on ws://127.0.0.1:51198
 [ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
 console.error: ({})
 DevTools listening on ws://127.0.0.1:51198/devtools/browser/892591c3-a2a3-4dc1-8c4c-e85825f56690
+1686315999093	geckodriver	INFO	Listening on 127.0.0.1:52464
+1686316002117	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "52465" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofiled1TToN"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686316002459	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686316002462	Marionette	INFO	Listening on port 52476
+WebDriver BiDi listening on ws://127.0.0.1:52465
+Read port: 52476
+1686316002666	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:52465/devtools/browser/212ae0cf-3620-47f3-9d5c-e5b54a0c6377
+1686316032498	geckodriver	INFO	Listening on 127.0.0.1:52613
+1686316035555	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "52614" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofiler9taRa"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686316035755	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686316035758	Marionette	INFO	Listening on port 52625
+Read port: 52625
+WebDriver BiDi listening on ws://127.0.0.1:52614
+1686316035822	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:52614/devtools/browser/bf91fb3b-a21b-4883-b102-a1852f10d7c6
+1686316820711	geckodriver	INFO	Listening on 127.0.0.1:53880
+1686316823770	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "53881" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofiletxYN7U"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686316823964	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686316823967	Marionette	INFO	Listening on port 53890
+Read port: 53890
+WebDriver BiDi listening on ws://127.0.0.1:53881
+1686316824027	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:53881/devtools/browser/5632fd22-08aa-4058-bf27-5b2c89992583
+1686317460998	geckodriver	INFO	Listening on 127.0.0.1:54893
+1686317464052	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "54894" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofileexNjKg"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686317464249	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686317464252	Marionette	INFO	Listening on port 54905
+Read port: 54905
+WebDriver BiDi listening on ws://127.0.0.1:54894
+1686317464312	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:54894/devtools/browser/2bd60e2b-06c7-46a7-bf1a-4f2e013d9f79
+1686318036565	geckodriver	INFO	Listening on 127.0.0.1:55794
+1686318039627	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "55795" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofile8rtNKr"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686318039822	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686318039824	Marionette	INFO	Listening on port 55807
+Read port: 55807
+WebDriver BiDi listening on ws://127.0.0.1:55795
+1686318039886	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:55795/devtools/browser/66723221-d6dc-4c29-ac4a-a770cc51f780
+1686318055614	geckodriver	INFO	Listening on 127.0.0.1:55999
+1686318058671	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "56000" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofilelYrLpy"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686318058867	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686318058870	Marionette	INFO	Listening on port 56010
+Read port: 56010
+WebDriver BiDi listening on ws://127.0.0.1:56000
+1686318058929	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:56000/devtools/browser/15a2dde6-ad17-4bb8-85da-aa4fe525837e
+1686326675864	geckodriver	INFO	Listening on 127.0.0.1:50725
+1686326678893	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "50726" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofileoPSER0"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686326679096	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686326679099	Marionette	INFO	Listening on port 50733
+Read port: 50733
+WebDriver BiDi listening on ws://127.0.0.1:50726
+1686326679163	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:50726/devtools/browser/0692c3df-daa2-4589-b86c-0683f2cf4870
+1686326699229	geckodriver	INFO	Listening on 127.0.0.1:51000
+1686326702273	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "51001" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofileZHq3Vl"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686326702468	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686326702471	Marionette	INFO	Listening on port 51008
+Read port: 51008
+WebDriver BiDi listening on ws://127.0.0.1:51001
+1686326702533	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:51001/devtools/browser/a147c6c9-88e8-4ea6-85d2-7b8cbc2da129
+1686326730279	geckodriver	INFO	Listening on 127.0.0.1:51286
+1686326733322	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "51287" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofilepUlxuH"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686326733536	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686326733539	Marionette	INFO	Listening on port 51294
+Read port: 51294
+WebDriver BiDi listening on ws://127.0.0.1:51287
+1686326733599	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:51287/devtools/browser/0c1eb75e-3ffb-45e2-a4a3-be76582c33f3
+1686326850416	geckodriver	INFO	Listening on 127.0.0.1:51648
+1686326853467	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "--remote-debugging-port" "51650" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\admin\\AppData\\Local\\Temp\\rust_mozprofile3IC77F"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1686326853664	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1686326853667	Marionette	INFO	Listening on port 51658
+Read port: 51658
+WebDriver BiDi listening on ws://127.0.0.1:51650
+1686326853728	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+console.error: ({})
+DevTools listening on ws://127.0.0.1:51650/devtools/browser/f587f98f-e495-431d-b0bf-ab882757df12
+JavaScript error: https://d36jcksde1wxzq.cloudfront.net/main.442cce6fde323bae0790.js, line 205: Error: Request has been terminated
+Possible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.
+JavaScript error: https://d36jcksde1wxzq.cloudfront.net/main.442cce6fde323bae0790.js, line 205: Error: Request has been terminated
+Possible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.
