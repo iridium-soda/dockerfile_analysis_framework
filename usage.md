@@ -77,6 +77,8 @@ To run background:
 nohup python3 -u images/crawl_keyword_list.py 0 >> output-a.log 2>&1 &
 ```
 
+**Be sure to remove all file named `./keyWordList-<char>.txt` before running. Maybe fix it later.**
+
 TroubleShoots:
 
 If the program stuck, uninstall and reinstall Firefox follow steps above. Or just praying and retrying...
