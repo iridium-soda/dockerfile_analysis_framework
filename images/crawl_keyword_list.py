@@ -137,6 +137,7 @@ def traversal_paths_to_leaf():
 
 def check_number(number):
     num = str(number).split(",")
+    
     # num over 1,000,000
     if len(num) > 2:
         return 0
@@ -186,6 +187,7 @@ def check_keyword_search_results(keyWord):
         if "-" in link.div.text and "of" in link.div.text:
             num = link.div.text.split()[4]
             imageNum = check_number(num)
+            print("{}: got {}, means {}",keyWord,num,imageNum)
             return imageNum
     return 0
 

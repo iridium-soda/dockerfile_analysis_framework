@@ -99,3 +99,5 @@ Note:
 `images\crawl_keyword_list.py`在无图形界面的ubuntu上运行时卡住了。（或者报Failed to read marionette port）这是个比较麻烦的问题，检查之后发现可能是firefox的问题。见<https://stackoverflow.com/questions/72374955/failed-to-read-marionette-port-when-running-selenium-geckodriver-firefox-a>
 
 参考这个回答：<https://stackoverflow.com/a/76395058>
+
+目前的问题是在收到合适的结果之后没有返回而是继续遍历tree，以及中途退出可能并非网络的问题。
