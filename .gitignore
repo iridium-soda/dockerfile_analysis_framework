@@ -8,3 +8,5 @@ images/__pycache__/get_proxy.cpython-310.pyc
 images\keywords-list
 images\__pycache__
 images_list
+keywords/*.txt
+geckodriver.log

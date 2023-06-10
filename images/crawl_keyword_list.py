@@ -102,7 +102,7 @@ def cut_accepted_leaves(leaves):
 
 def traversal_paths_to_leaf():
     # flag is used to judge whether end recursive
-    flag = 1
+    #flag = 1
     leaves = dictTree.leaves()
     for path in dictTree.paths_to_leaves():
         keyWord = ""
@@ -115,8 +115,20 @@ def traversal_paths_to_leaf():
         # Note: Refer https://blog.csdn.net/woaixuexi6666/article/details/126394558
         status = check_keyword_search_results(keyWord)
         if status == 1:
+            print("Before removing:")
+            print_trees()
+
             dictTree.remove_node(leaf.identifier)
-            cut_accepted_leaves(leaves)
+
+            #print("After removing:")
+            #print_trees()
+
+            #NOTE: comment here to avoid wordtree reset
+            #cut_accepted_leaves(leaves)
+
+            #print("After cutting:")
+            #print_trees()
+
             with open(keywordsFile, "a+") as keyword_list:
                 keyword_list.write(keyWord + "\n")  # Adding to vaild words.
             # keywordList.append(keyWord)
@@ -130,8 +142,8 @@ def traversal_paths_to_leaf():
         else:
             add_leaf_node(leaf)
             flag = 0
-
-    if flag == 0:
+        print_trees()
+    if print_trees():# This function shows if the tree is empty
         traversal_paths_to_leaf()
 
 
@@ -171,35 +183,34 @@ def check_keyword_search_results(keyWord):
             print("retry...")
             continue
 
-    #bef=browser.page_source
-    while 1:
-        try:
-            element = Wait(browser, timeout_sec).until(
-            Expect.presence_of_element_located((By.CLASS_NAME, "MuiTypography-root MuiTypography-h3 css-lhhh1d"))
-            )
+    
+    try:
+        element = Wait(browser, timeout_sec).until(
+        Expect.presence_of_element_located((By.CLASS_NAME, "MuiTypography-root MuiTypography-h3 css-lhhh1d"))
+        )
 
-            if "No results" in element.text:
-                print("There doesn't have search results...")
-                # return 0
-                return -2
-        except Exception as e:
-            pass
+        if "No results" in element.text:
+            print("There doesn't have search results...")
+            # return 0
+            return -2
+        """
+        NOTE: in fact we cannot capture 'No result' here but we must wait for some secs.
+        """
+    except Exception as e:
+        pass #Continue executing
 
 
-        # NOTE: thisstep will fix browser.page_source,so donot comment it.
-        #aft=browser.page_source
-        #print(f"The browser.page_source changed?{aft==bef}")
+    # NOTE: thisstep will fix browser.page_source,so donot comment it.
 
-        #print(f"wegot {browser.page_source}")
-        soup = BeautifulSoup(browser.page_source, "html.parser")
+    #print(f"wegot {browser.page_source}")
+    soup = BeautifulSoup(browser.page_source, "html.parser")
 
-        links = soup.find_all("div", class_="MuiBox-root css-r29exk")
+    links = soup.find_all("div", class_="MuiBox-root css-r29exk")
         #print(f"We got {links}")
         # FIXME: 这里什么都没抓到
-        if not links:
-            print("fatal:no links located. Retry")
-        else:
-            break
+    if not links:
+        print("fatal:no links located. Retry")
+        return check_keyword_search_results(keyWord=keyWord)#Reexecute
     
     for link in links:
         print(f"Raw text is:{link.div.text}")
@@ -208,8 +219,18 @@ def check_keyword_search_results(keyWord):
             imageNum = check_number(num)
             print(f"{keyWord}: got {num}, means {imageNum}")
             return imageNum
+        elif link.div.text=="images":
+            #Patch: no result here
+            print("No result here")
+            return -2
     return 0
 
+def print_trees():
+    res=[]
+    for path in dictTree.paths_to_leaves():
+        res.append("".join([dictTree[w].data for w in path]))
+    print(res)
+    return res
 
 def main():
     init_tree()
@@ -218,9 +239,10 @@ def main():
 
 
 if __name__ == "__main__":
+    
     divison = int(sys.argv[1])  # should be 0~37
     if divison >=0 and divison<38:
         keywordsFile="./keywords/keyWordList-"+wordDict[divison]+".txt"
         main()
-    else:
-        print("Wrong args!")
+        
+    
