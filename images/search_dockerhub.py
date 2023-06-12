@@ -5,7 +5,7 @@ import requests
 import os
 import get_proxy
 
-prefix="" # The global prefix
+
 def get_images_url(keyword, url):
     if url == "":
         return ""
@@ -95,7 +95,8 @@ def main():
     index = 0
     total = str(len(keywords))
     # Get prefix for savefile
-    prefix=sys.argv[1].split()[0][-1]
+    prefix=sys.argv[1].split(".")[0][-1]
+    print(f"Prefix is {prefix}")
     for keyword in keywords:
         index += 1
         print("[" + str(index) + "/" + total + "] " + keyword)
