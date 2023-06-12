@@ -94,9 +94,9 @@ def main():
     crawl_thread = []
     index = 0
     total = str(len(keywords))
-
+    # Get prefix for savefile
+    prefix=sys.argv[1].split()[0][-1]
     for keyword in keywords:
-        prefix=keyword[0]
         index += 1
         print("[" + str(index) + "/" + total + "] " + keyword)
 
