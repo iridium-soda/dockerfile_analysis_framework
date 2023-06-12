@@ -115,8 +115,8 @@ def traversal_paths_to_leaf():
         # Note: Refer https://blog.csdn.net/woaixuexi6666/article/details/126394558
         status = check_keyword_search_results(keyWord)
         if status == 1:
-            print("Before removing:")
-            print_trees()
+            #print("Before removing:")
+            #print_trees()
 
             dictTree.remove_node(leaf.identifier)
 
@@ -142,7 +142,7 @@ def traversal_paths_to_leaf():
         else:
             add_leaf_node(leaf)
             flag = 0
-        print_trees()
+        
     if print_trees():# This function shows if the tree is empty
         traversal_paths_to_leaf()
 
@@ -150,13 +150,21 @@ def traversal_paths_to_leaf():
 def check_number(number):
     num = str(number).split(",")
     
-    # num over 1,000,000
-    if len(num) > 2:
+    # num over 10,000 or no result
+    if len(num) > 2 or len(num) == 0:
         return 0
-    # num less 1,000
-    elif len(num) == 1:
+    
+    elif len(num)==2:
+        # Over 10,000
+        if int(num[0])>=10:
+            return 0
+        # num less 10,000
+        else:
+            return 1
+    # less than 1,000
+    else:
         return 1
-
+    """
     try:  # Why here?
         imageNum = int(num[0]) * 1000 + int(num[1])
         if imageNum < 2500:
@@ -165,6 +173,7 @@ def check_number(number):
         return 0  # if len(num)==0,return 0. Usually it will not happen
 
     return 0
+    """
 
 
 def check_keyword_search_results(keyWord):
@@ -229,7 +238,7 @@ def print_trees():
     res=[]
     for path in dictTree.paths_to_leaves():
         res.append("".join([dictTree[w].data for w in path]))
-    print(res)
+    #print(res)
     return res
 
 def main():
