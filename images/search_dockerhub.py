@@ -5,6 +5,7 @@ import requests
 import os
 import get_proxy
 
+prefix=""
 
 def get_images_url(keyword, url):
     if url == "":
@@ -83,6 +84,7 @@ class resolve_images_thread(threading.Thread):
         return self.images
 
 def main():
+    global prefix
     cores =  os.cpu_count() # To fit the current running meachines
     keywords = {}
     with open(sys.argv[1], "r") as log:
