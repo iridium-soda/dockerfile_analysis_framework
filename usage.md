@@ -84,3 +84,13 @@ nohup python3 -u images/crawl_keyword_list.py 0 >> output-a.log 2>&1 &
 TroubleShoots:
 
 If the program stuck, uninstall and reinstall Firefox follow steps above. Or just praying and retrying...
+
+### Search Images
+
+Search for all images based on avaliable keywords we get in the previous step.
+
+```shell
+python images/search_dockerhub.py keywords/keyWordList-_.txt
+```
+
+Ensure the network connection runs normally.

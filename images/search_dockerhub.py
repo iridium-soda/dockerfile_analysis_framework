@@ -5,6 +5,7 @@ import requests
 import os
 import get_proxy
 
+index="" # The global prefix
 def get_images_url(keyword, url):
     if url == "":
         return ""
@@ -31,20 +32,12 @@ def get_images_url(keyword, url):
 
     try:
         #proxy=get_proxy.get_proxy()
-        proxy=""
-        if proxy:
-            content = requests.get(url, headers = headers,proxies=proxy)
-        else:# proxy is down
-            content = requests.get(url, headers = headers)
+        
+        content = requests.get(url, headers = headers)
         while content.status_code == 429:# 429 means too many requests to get response
             print ("[WARN] wait for 429!")
             time.sleep(60)
-            proxy=""
-            #proxy=get_proxy.get_proxy()
-            if proxy:
-                content = requests.get(url, headers = headers,proxies=proxy)
-            else:# proxy is down
-                content = requests.get(url, headers = headers)
+            content = requests.get(url, headers = headers)
 
         if content.status_code == 200:
             return content
@@ -82,6 +75,7 @@ class resolve_images_thread(threading.Thread):
 
                     if image not in self.images:
                         self.images[image] = image + ", " + created + ", " + updated
+                        print(f"Add image:{image} for keyword {self.keyword}")
                 except:
                     continue
 

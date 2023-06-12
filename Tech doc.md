@@ -60,7 +60,7 @@ URLS:
 - `https://hub.docker.com/api/audit/v1/build/?include_related=true&offset=0&limit=50&object=%2Fapi%2Frepo%2Fv1%2Frepository%2F<username>%2F<image_name>%2F`: Get github repo from dockerhub(if has)
 - `https://raw.githubusercontent.com/<repo>/Dockerfile`: Get dockerfile from github repo
 - `https://hub.docker.com/v2/repositories/<image_name>/tags/`: Get all tags from dockerhub and extract them via `content["results"]["name"]`
-- `https://hub.docker.com/v2/repositories/<image_name>/tags/<tag_name>/images`: Get each layer's instruction to make up a dockerfile; exeract instructions from `contane[layer][instruction]`. Add `ENTRYPOINT` if necessary.
+- `https://hub.docker.com/v2/repositories/<image_name>/tags/<tag_name>/images`: Get each layer's instruction to make up a dockerfile; exeract instructions from `content[layer][instruction]`. Add `ENTRYPOINT` if necessary.
 
 ### images\search_dockerhub.py
 
