@@ -5,7 +5,7 @@ import requests
 import os
 import get_proxy
 
-index="" # The global prefix
+prefix="" # The global prefix
 def get_images_url(keyword, url):
     if url == "":
         return ""
@@ -94,7 +94,9 @@ def main():
     crawl_thread = []
     index = 0
     total = str(len(keywords))
+
     for keyword in keywords:
+        prefix=keyword[0]
         index += 1
         print("[" + str(index) + "/" + total + "] " + keyword)
 
@@ -126,7 +128,7 @@ def main():
         save_data(imgs)
 # Collect all data in ./results/all_images.list
 def save_data(images):
-    with open("./results/all_images.list", "a+") as log:
+    with open("./results/all_images"+prefix+".list", "a+") as log:
         for img in images:
             log.write(images[img] + "\n")
 
