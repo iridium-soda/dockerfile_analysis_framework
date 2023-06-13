@@ -116,18 +116,20 @@ def traversal_paths_to_leaf():
         status = check_keyword_search_results(keyWord)
         if status == 1:
             #print("Before removing:")
-            #print_trees()
+            #print(print_trees())
 
             dictTree.remove_node(leaf.identifier)
 
             #print("After removing:")
-            #print_trees()
+            #print(print_trees())
+
 
             #NOTE: comment here to avoid wordtree reset
             cut_accepted_leaves(leaves)
+            #dictTree.show()
 
             #print("After cutting:")
-            #print_trees()
+            #print(print_trees())
 
             with open(keywordsFile, "a+") as keyword_list:
                 keyword_list.write(keyWord + "\n")  # Adding to vaild words.
@@ -140,6 +142,7 @@ def traversal_paths_to_leaf():
         elif status == -1:
             return
         else:
+            # status==0
             add_leaf_node(leaf)
             flag = 0
         
