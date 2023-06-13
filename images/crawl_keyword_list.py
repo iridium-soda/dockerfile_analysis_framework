@@ -248,6 +248,7 @@ def main():
     init_tree()
     traversal_paths_to_leaf()
     browser.quit()
+    print("Finished!")
 
 
 if __name__ == "__main__":
