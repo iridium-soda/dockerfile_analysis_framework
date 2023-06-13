@@ -124,7 +124,7 @@ def traversal_paths_to_leaf():
             #print_trees()
 
             #NOTE: comment here to avoid wordtree reset
-            #cut_accepted_leaves(leaves)
+            cut_accepted_leaves(leaves)
 
             #print("After cutting:")
             #print_trees()
