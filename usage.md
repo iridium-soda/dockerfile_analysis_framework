@@ -93,4 +93,31 @@ Search for all images based on avaliable keywords we get in the previous step.
 python images/search_dockerhub.py keywords/keyWordList-_.txt
 ```
 
-Ensure the network connection runs normally.
+Ensure the network connection runs normally. The result will be saved at `./result/`
+
+To run background, use the following commands:
+
+```shell
+nohup python3 -u images/search_dockerhub.py keywords/keyWordList-a.txt >> logs/images/imagelist_a.log 2>&1 &
+```
+## Get metadatas
+- Install Mongodb required
+Then:
+```shell
+mongosh # use mongo for version lower than 6.0
+```
+
+```shell
+nohup python metadata/metadata_crawler.py results/all_images__.list >output.log 2>&1 &
+```
+https://hub.docker.com/r/0chaindev/miner 这个namespace下的镜像都有一大堆tag，导致了网络阻塞，报大量429。名字也很可疑
+
+## Get tags and manifests
+
+Location:`manifest_analysis/download.py`
+
+TODO
+
+- get tags via https://docs.docker.com/registry/spec/api/#get-tags
+- Main entry is at judge_url_layers but tags must be provided
+- 获取manifest有每天200个限额，考虑换阿里云加速器

@@ -61,3 +61,9 @@ python images\\search_dockerhub.py images\\keywords-list\\keyWordList_--.txt
 ```
 
 - `isAlive`应该改为`t.is_alive()`
+
+### Get metadatas of images
+
+```shell
+nohup python metadata/metadata_crawler.py results/all_images__.list >output.log 2>&1 &
+```

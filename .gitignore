@@ -10,3 +10,8 @@ images\__pycache__
 images_list
 keywords/*.txt
 geckodriver.log
+
+# datas
+results/*
+
+metadata\__pychahe__

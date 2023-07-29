@@ -129,9 +129,10 @@ def main():
         t.join()
         imgs = t.get_results()
         save_data(imgs)
+    print("Finished!")
 # Collect all data in ./results/all_images.list
 def save_data(images):
-    with open("./results/all_images"+prefix+".list", "a+") as log:
+    with open("./results/all_images_"+prefix+".list", "a+") as log:
         for img in images:
             log.write(images[img] + "\n")
 

@@ -1,4 +1,7 @@
 # Crawling dockerhub for all Dockerfile, and checking this Dockerfile whether has malicious behaviors
+"""
+每个tag的image name, created date, update date, layers' history，layer size, short description, full description
+"""
 import sys
 import threading
 import crawler
