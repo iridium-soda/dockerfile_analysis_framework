@@ -1,0 +1,59 @@
+# Dockerfile Metadata Crawler
+
+This tool crawls Dockerfile metadata for a given list of Docker images and stores the results in MongoDB. It is designed to be used as part of a Dockerfile analysis framework.
+
+## Features
+
+- Accepts input file containing list of Docker image names 
+- Crawls Docker Hub to retrieve Dockerfile and metadata for each image
+  - Dockerfile contents
+  - Image description
+  - Last updated date
+  - User info
+  - Star count
+- Stores results in MongoDB document database
+- Resumable in case of interruptions
+- Avoid recrawling images already in database 
+
+## Usage
+
+1. Check dependencies
+
+```
+pip install -r requirements.txt 
+```
+
+2. Configure MongoDB connection settings in `config.py`
+
+3. Run crawler; the name of image list must be end up with `_[prefix char]_[fragment index].list` like `testdata_@_1.list`:
+
+```
+python crawler.py images.txt
+```
+
+Where `images.txt` contains a list of Docker image names, one per line.
+
+Results will be stored in the `dockerfiles` collection in MongoDB.
+
+4. To resume after interruption:
+
+```
+python crawler.py images.txt --resume
+```
+
+This will skip over images already in MongoDB and continue from last point.
+
+## Contributing
+
+Contributions welcome! Some ideas:
+
+- Support for additional Dockerfile metadata
+- Enhanced logging/debugging
+- Improved resuming logic
+- Analyze Dockerfiles and output statistics
+
+Please open an issue to discuss any major changes first.
+
+## License
+
+This project is licensed under MIT - see LICENSE for more details.

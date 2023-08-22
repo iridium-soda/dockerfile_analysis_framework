@@ -121,3 +121,5 @@ TODO
 - get tags via https://docs.docker.com/registry/spec/api/#get-tags
 - Main entry is at judge_url_layers but tags must be provided
 - 获取manifest有每天200个限额，考虑换阿里云加速器
+
+- 如果需要分割`results`内的文件，需要保证扩展名（如果有）前最后一个字符是前缀，否则会解析错误
